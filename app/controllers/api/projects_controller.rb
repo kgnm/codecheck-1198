@@ -45,11 +45,11 @@ class Api::ProjectsController < ApplicationController
   # DELETE /projects/
   # DELETE /projects/
   def destroy
-    @project.destroy
-    render json: @project, status: :ok, location: @project
-  rescue  
-    head :not_found
- 
+    @api_project.destroy
+    respond_to do |format|
+      format.html { redirect_to api_projects_url, notice: 'Project was successfully destroyed.' }
+      format.json { head :no_content }
+	end
   end
 
   private
